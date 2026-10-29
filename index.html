@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>स्वाद महाराष्ट्र | Swad Maharashtra - Authentic Cuisine</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="symbol">🚩</span>
+            <div>
+                <h1>स्वाद महाराष्ट्र</h1>
+                <p class="tagline">परंपरा महाराष्ट्राची, चव आठवणींची</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu (30+ Items)</a></li>
+                <li><a href="#reservation">Table Book</a></li>
+                <li><a href="#preorder">Pre-Order Pickup</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+        </nav>
+        <button class="btn-primary" onclick="openReserveModal()">Table Reserve Karein</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="welcome-badge">महाराष्ट्राचा अस्सल स्वाद</span>
+            <h2>खास महाराष्ट्रीयन थाळी आणि पारंपारिक मेजवानी</h2>
+            <p>Misal Pav, Puran Poli, Kolhapuri Mutton, Solkadhi aur 30+ traditional Maharashtrian dishes ka anand lein!</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn-primary"><i class="fa-solid fa-utensils"></i> Menu Dekhein</a>
+                <a href="#reservation" class="btn-secondary"><i class="fa-solid fa-chair"></i> Table Reserve Karein</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="section-title">
+            <h2>आमचा खास मेनू (Our Menu)</h2>
+            <div class="title-underline"></div>
+            <p>Nasta, Main Course, Mithai aur Drinks - Full Maharashtrian Menu</p>
+        </div>
+
+        <!-- Controls: Search & Category Filter -->
+        <div class="menu-controls">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Dish search karein (e.g. Misal, Puran Poli)...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All (30+)</button>
+                <button class="filter-btn" data-category="nasta">नाश्ता (Breakfast)</button>
+                <button class="filter-btn" data-category="jeevan">जेवण (Main Course)</button>
+                <button class="filter-btn" data-category="mithaas">मिष्टान्न (Sweets)</button>
+                <button class="filter-btn" data-category="peya">पेय (Beverages)</button>
+            </div>
+        </div>
+
+        <!-- Menu Items Grid -->
+        <div class="menu-grid" id="menuGrid">
+            <!-- Items Javascript se dynamload honge -->
+        </div>
+    </section>
+
+    <!-- Pre-Order (Dine-In / Pickup) Section -->
+    <section id="preorder" class="preorder-section">
+        <div class="section-title">
+            <h2>Pre-Order & Takeaway / Dine-In</h2>
+            <div class="title-underline"></div>
+            <p>Note: Hum Home Delivery nahi karte. Aap order pehle se book karke restaurant par DINE-IN ya PICKUP kar sakte hain.</p>
+        </div>
+
+        <div class="preorder-container">
+            <div class="cart-summary">
+                <h3><i class="fa-solid fa-basket-shopping"></i> Aapka Selected Order</h3>
+                <div id="cartItems" class="cart-items">
+                    <p class="empty-msg">Koi dish select nahi ki hai. Menu se Add Karein.</p>
+                </div>
+                <div class="cart-total">
+                    <span>Total Amount:</span>
+                    <strong id="cartTotal">₹0</strong>
+                </div>
+            </div>
+
+            <form id="preorderForm" class="order-form">
+                <h3>Order Info</h3>
+                <div class="input-group">
+                    <label>Aapka Naam</label>
+                    <input type="text" id="custName" required placeholder="Naam likhein">
+                </div>
+                <div class="input-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="custPhone" required placeholder="Mobile number">
+                </div>
+                <div class="input-group">
+                    <label>Order Type</label>
+                    <select id="orderType" required>
+                        <option value="pickup">Takeaway (Restaurant se Pickup)</option>
+                        <option value="dinein">Dine-In (Restaurant me khayenge)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Pickup / Arrival Time</label>
+                    <input type="time" id="pickupTime" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Order Confirm Karein</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Table Reservation Section -->
+    <section id="reservation" class="reservation-section">
+        <div class="reservation-card">
+            <div class="section-title">
+                <h2>Table Reservation</h2>
+                <div class="title-underline"></div>
+                <p>Khayein Shaan Se - Apni Table Pehle Se Reserve Karein</p>
+            </div>
+            <form id="reserveForm" class="reserve-form">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label><i class="fa-solid fa-user"></i> Full Name</label>
+                        <input type="text" id="resName" required placeholder="Aapka Naam">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fa-solid fa-phone"></i> Phone Number</label>
+                        <input type="tel" id="resPhone" required placeholder="Phone Number">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label><i class="fa-solid fa-calendar"></i> Date</label>
+                        <input type="date" id="resDate" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fa-solid fa-clock"></i> Time Slot</label>
+                        <input type="time" id="resTime" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fa-solid fa-users"></i> Guests</label>
+                        <select id="resGuests" required>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="6">6 Guests</option>
+                            <option value="8+">8+ Large Family Group</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary"><i class="fa-solid fa-check"></i> Table Book Karein</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
+        <div class="section-title">
+            <h2>ग्राहकांच्या प्रतिक्रिया (Customer Reviews)</h2>
+            <div class="title-underline"></div>
+            <p>Humare grahak hamare baare me kya kehte hain</p>
+        </div>
+
+        <div class="reviews-grid" id="reviewsGrid">
+            <!-- Dynamic Reviews Load Honge -->
+        </div>
+
+        <!-- Add Review Form -->
+        <div class="add-review-box">
+            <h3>Aapna Review Add Karein</h3>
+            <form id="reviewForm">
+                <div class="form-row">
+                    <input type="text" id="reviewerName" placeholder="Aapka Naam" required>
+                    <select id="reviewerRating" required>
+                        <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                        <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                        <option value="3">⭐⭐⭐ (3/5)</option>
+                    </select>
+                </div>
+                <textarea id="reviewerComment" rows="3" placeholder="Aapka Anubhav (Review text)..." required></textarea>
+                <button type="submit" class="btn-primary">Submit Review</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>🚩 स्वाद महाराष्ट्र (Swad Maharashtra)</h3>
+                <p>Authentic Traditional Maharashtrian Culinary Experience.</p>
+                <p><i class="fa-solid fa-location-dot"></i> Shivaji Park, Dadar West, Mumbai - 400028</p>
+                <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+            </div>
+            <div class="footer-timing">
+                <h4><i class="fa-solid fa-clock"></i> Restaurant Timings</h4>
+                <p>Somwar - Ravivar (Mon - Sun)</p>
+                <p>8:00 AM - 11:00 PM</p>
+                <p><em>*Home delivery service unavailable. Dine-in and Takeaway available.</em></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 Swad Maharashtra. All Rights Reserved. Crafted with Maharashtrian Pride.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
